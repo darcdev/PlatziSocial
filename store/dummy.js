@@ -31,7 +31,7 @@ async function remove(table, id) {
     let indexUserId = db[table].findIndex(item => item.id === id);
     if (indexUserId >= 0) {
         db[table].splice(indexUserId, 1);
-        return true
+        return true;
     }
     return false;
 }

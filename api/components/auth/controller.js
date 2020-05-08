@@ -17,7 +17,6 @@ module.exports = function(injectedStore) {
                     throw new Error('Informacion invalida');
                 }
             })
-
     }
     async function upsert(data) {
         const authData = {
