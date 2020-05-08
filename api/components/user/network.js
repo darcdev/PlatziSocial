@@ -7,6 +7,7 @@ const controller = require('./index');
 router.get('/', list);
 router.get('/:id', get);
 router.post('/', upsert);
+router.put('/', upsert);
 router.delete('/:id', remove);
 
 function list(req, res) {
@@ -32,6 +33,7 @@ function get(req, res) {
 function upsert(req, res) {
     controller.upsert(req.body)
         .then(user => {
+            console.log(user);
             response.sucess(req, res, user);
         })
         .catch(error => {
