@@ -1,3 +1,5 @@
+const auth = require('../../../auth');
+
 const TABLEAUTH = 'auth'
 module.exports = function(injectedStore) {
     let store = injectedStore;
@@ -5,6 +7,14 @@ module.exports = function(injectedStore) {
         store = require('../../../store/dummy');
     }
 
+    async function login(username, password) {
+        const data = await store.query(TABLEAUTH, { username: username });
+        if (data.password === password) {
+            return auth.sign(data);
+        } else {
+            throw new Error('Informacion invalida');
+        }
+    }
 
     function upsert(data) {
         const authData = {
@@ -20,6 +30,7 @@ module.exports = function(injectedStore) {
     }
 
     return {
-        upsert
+        upsert,
+        login
     }
 }
