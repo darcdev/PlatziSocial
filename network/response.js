@@ -1,11 +1,11 @@
-exports.sucess = (req, res, message = '', status) => {
+exports.sucess = (req, res, message = '', status = 200) => {
     res.status(status).send({
         error: false,
         status,
         body: message
     })
 }
-exports.error = (req, res, message = 'Internal Server Error', status) => {
+exports.error = (req, res, message = 'Internal Server Error', status = 500) => {
     res.status(status).send({
         error: message,
         status,
