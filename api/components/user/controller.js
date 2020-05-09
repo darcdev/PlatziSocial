@@ -45,7 +45,6 @@ module.exports = function(injectedStore) {
     }
 
     function follow(from, to) {
-        console.log(from, '/', to)
         return store.upsert(TABLEUSER + '_follow', {
             user_from: from,
             user_to: to

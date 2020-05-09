@@ -86,11 +86,9 @@ function query(table, query, join) {
         connection.query(`SELECT * FROM ${table} ${joinQuery} WHERE ?`, query, (err, res) => {
             if (err) return reject(err);
             if (joinQuery) {
-
                 resolve(res || null);
             }
             resolve(res[0] || null);
-
         })
     })
 }
