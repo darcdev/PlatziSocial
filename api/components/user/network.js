@@ -11,45 +11,37 @@ router.post('/', upsert);
 router.put('/', secure('update'), upsert);
 router.delete('/:id', remove);
 
-function list(req, res) {
+function list(req, res, next) {
     controller.list()
         .then(list => {
             response.sucess(req, res, list);
         })
-        .catch(error => {
-            response.error(req, res, error);
-        })
+        .catch(next)
 }
 
-function get(req, res) {
+function get(req, res, next) {
     controller.get(req.params.id)
         .then(user => {
             response.sucess(req, res, user);
         })
-        .catch(error => {
-            response.error(req, res, error);
-        })
+        .catch(next)
 }
 
-function upsert(req, res) {
+function upsert(req, res, next) {
     controller.upsert(req.body)
         .then(user => {
             console.log(user);
             response.sucess(req, res, user);
         })
-        .catch(error => {
-            response.error(req, res, error);
-        })
+        .catch(next)
 }
 
-function remove(req, res) {
+function remove(req, res, next) {
     controller.remove(req.params.id)
         .then(() => {
             response.sucess(req, res, 'Se elimino correctamente el usuario');
         })
-        .catch(error => {
-            response.error(req, res, error);
-        })
+        .catch(next)
 }
 
 module.exports = router;
